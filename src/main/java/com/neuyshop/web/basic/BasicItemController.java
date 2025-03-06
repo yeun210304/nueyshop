@@ -70,13 +70,19 @@ public class BasicItemController {
         return "basic/item";
     }
     
-    @PostMapping("/add")
+    // @PostMapping("/add")
     public String addItemV4(Item item) {
         itemRepository.save(item);
         // model.addAttribute("item", item);
         return "basic/item";
     }
     
+    @PostMapping("/add")
+    public String addItemV5(Item item) {
+        itemRepository.save(item);
+        return "redirect:/basic/items/" + item.getId();
+    }
+
     @GetMapping("/{itemId}/edit")
     public String editForm(@PathVariable Long itemId, Model model) {
         Item item = itemRepository.findById(itemId);
@@ -95,7 +101,8 @@ public class BasicItemController {
      */
     @PostConstruct
     public void initData() {
-        itemRepository.save(new Item("itemA", 10000, 10));
-        itemRepository.save(new Item("itemB", 20000, 20));
+        itemRepository.save(new Item("상품1", 10000, 10));
+        itemRepository.save(new Item("상품2", 20000, 20));
+        itemRepository.save(new Item("상품3", 20000, 20));
     }
 }
