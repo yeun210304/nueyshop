@@ -1,4 +1,4 @@
-package com.neuyshop.web.basic;
+package com.neuyshop.web.form;
 
 import java.util.List;
 
@@ -15,13 +15,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.neuyshop.domain.Item;
 import com.neuyshop.repository.ItemRepository;
 
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/basic/items")
 @RequiredArgsConstructor
-public class BasicItemController {
+public class FormItemController {
 
     private final ItemRepository itemRepository;
 
@@ -105,13 +104,4 @@ public class BasicItemController {
         return "redirect:/basic/items/{itemId}";
     }
 
-    /**
-     * 테스트용 데이터 추가
-     */
-    @PostConstruct
-    public void initData() {
-        itemRepository.save(new Item("상품1", 10000, 10));
-        itemRepository.save(new Item("상품2", 20000, 20));
-        itemRepository.save(new Item("상품3", 20000, 20));
-    }
 }
